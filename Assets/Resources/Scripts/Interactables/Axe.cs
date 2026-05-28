@@ -1,10 +1,14 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody))]
 public class Axe : MonoBehaviour
 {
     [SerializeField] float _damagePerUnitForce = 1f;
     [SerializeField] float _minForceForDamage = 5f;
+    [SerializeField] private AudioClip[] _hitSounds;
+    [SerializeField] float _maxDamagoForVolume = 30f;
+    AudioSource _audioSource;
     Rigidbody _rigidbody;
     Carriable _carriableComponent;
 
@@ -12,6 +16,7 @@ public class Axe : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _carriableComponent = GetComponent<Carriable>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -28,15 +33,8 @@ public class Axe : MonoBehaviour
 
         if (health == null) return;
 
-        float otherMass = (collision.rigidbody != null) ? collision.rigidbody.mass : _rigidbody.mass;
-
-        float myMass = _rigidbody.mass;
-
-        float effectiveMass = (otherMass * myMass) / (otherMass + myMass);
-
         float relativeVelocity = collision.relativeVelocity.magnitude;
-
-        float force = 0.5f * effectiveMass * relativeVelocity * relativeVelocity;
+        float force = 0.5f * relativeVelocity * relativeVelocity; // Assuming mass = 1 for simplicity, otherwise use 0.5 * mass * velocity^2
 
         if (force < _minForceForDamage) return;
 
@@ -44,7 +42,7 @@ public class Axe : MonoBehaviour
 
         health.TakeDamage(damage);
 
-        Debug.Log($"Axe hit {collision.collider.name} with force {force}, dealing {damage} damage.");
+        _audioSource.PlayOneShot(_hitSounds[Random.Range(0, _hitSounds.Length)], Mathf.Clamp01(damage / _maxDamagoForVolume));
     }
 
 }

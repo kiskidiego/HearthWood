@@ -16,7 +16,6 @@ public class StaminaComponent : MonoBehaviour
     void Update()
     {
         RegenStamina();
-        Debug.Log($"Stamina: {_currentStamina}");
     }
 
     void RegenStamina()
