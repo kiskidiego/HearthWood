@@ -558,6 +558,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Resume
       objectReference: {fileID: 0}
+    - target: {fileID: 3099371407030797280, guid: c96b69f22ebe239428f5e06e51e07984, type: 3}
+      propertyPath: m_text
+      value: Pause
+      objectReference: {fileID: 0}
     - target: {fileID: 3778320699663661437, guid: c96b69f22ebe239428f5e06e51e07984, type: 3}
       propertyPath: m_Pivot.x
       value: 0
