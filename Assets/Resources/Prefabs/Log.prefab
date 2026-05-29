@@ -79,7 +79,8 @@ MonoBehaviour:
   _carryForce: 40
   _distanceForceScaling: 0.2
   _damping: 7.5
-  _maxCarryDistance: 1
+  _maxCarryDistance: 3
+  _heightOffset: -0.5
 --- !u!114 &3548354585850690089
 MonoBehaviour:
   m_ObjectHideFlags: 0

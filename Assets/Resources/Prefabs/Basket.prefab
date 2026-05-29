@@ -322,7 +322,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5159036260665617821}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -357,6 +357,7 @@ MonoBehaviour:
   _distanceForceScaling: 0.2
   _damping: 7.5
   _maxCarryDistance: 2
+  _heightOffset: -1
 --- !u!114 &7461887124682971697
 MonoBehaviour:
   m_ObjectHideFlags: 0

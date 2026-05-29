@@ -28,6 +28,6 @@ public class JumpComponent : MonoBehaviour
         _staminaComponent.ConsumeStamina(_staminaCost);
         _staminaComponent.DisableStaminaRegen(_staminaRegenDelay);
 
-        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.VelocityChange);
     }
 }

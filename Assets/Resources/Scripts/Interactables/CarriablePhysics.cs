@@ -6,6 +6,7 @@ public class CarriablePhysics : MonoBehaviour
     [SerializeField] private float _distanceForceScaling = .2f;
     [SerializeField] private float _damping = 7.5f;
     [SerializeField] private float _maxCarryDistance = 1f;
+    [SerializeField] private float _heightOffset = -1f;
 
     Vector3 _offsetFromPlayer;
     Rigidbody _rigidbody;
@@ -23,7 +24,6 @@ public class CarriablePhysics : MonoBehaviour
 
     public void StartCarrying(GameObject player)
     {
-        _rigidbody.mass = 0;
         _rigidbody.useGravity = false;
 
         _playerCamera = player.GetComponentInChildren<Camera>();
@@ -31,6 +31,7 @@ public class CarriablePhysics : MonoBehaviour
 
         _offsetFromPlayer = _playerCamera.transform.InverseTransformPoint(transform.position);
         _offsetFromPlayer.x = 0;
+        _offsetFromPlayer.y = _heightOffset;
         if (_offsetFromPlayer.magnitude > _maxCarryDistance)
         {
             _offsetFromPlayer = _offsetFromPlayer.normalized * _maxCarryDistance;
@@ -41,7 +42,6 @@ public class CarriablePhysics : MonoBehaviour
 
     public void StopCarrying()
     {
-        _rigidbody.mass = 1;
         _rigidbody.useGravity = true;
 
         _playerCamera = null;
