@@ -75,8 +75,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             return;
         }
-
-        if(!_isChasing)
+        else if(!_isChasing)
         {
             CheckChasing();
         }
@@ -105,7 +104,7 @@ public class EnemyBehaviour : MonoBehaviour
             _isChasing = false;
             ResetChaseChances();
             Vector3 fleeDirection = (transform.position - other.transform.position).normalized;
-            Vector3 fleeTarget = transform.position + fleeDirection * _chaseDistance;
+            Vector3 fleeTarget = transform.position + fleeDirection * _chaseDistance * 1.5f;
             NavMeshHit navMeshHit;
             if (NavMesh.SamplePosition(fleeTarget, out navMeshHit, _chaseDistance, NavMesh.AllAreas))
             {
@@ -140,7 +139,7 @@ public class EnemyBehaviour : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
         if (distanceToPlayer <= _chaseDistance)
         {
-            _isChasing = true;
+            StartChasing();
             return;
         }
         if (!_isChasing)

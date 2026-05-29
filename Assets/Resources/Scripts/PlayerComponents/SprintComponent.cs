@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementComponent))]
@@ -13,8 +14,10 @@ public class SprintComponent : MonoBehaviour
     private MovementComponent _movementComponent;
     private GroundChecker _groundChecker;
     private StaminaComponent _staminaComponent;
+    private bool _isTryingToSprint = false;
     private bool _isSprinting = false;
     private bool _canSprint = true;
+    Vector3 _lastPosition;
     public bool CanSprint {
         get {return _canSprint;}
         set 
@@ -33,6 +36,20 @@ public class SprintComponent : MonoBehaviour
 
     void Update()
     {
+        if (_isTryingToSprint)
+        {
+            if (!_isSprinting)
+            {
+                StartSprint();
+            }
+        }
+        else
+        {
+            if (_isSprinting)
+            {
+                StopSprint();
+            }
+        }
         if (_isSprinting)
         {
             if (!_staminaComponent.HasEnoughStamina(_staminaCostPerSecond * Time.deltaTime))
@@ -40,11 +57,20 @@ public class SprintComponent : MonoBehaviour
                 StopSprint();
                 return;
             }
-            _staminaComponent.ConsumeStamina(_staminaCostPerSecond * Time.deltaTime);
+            if((transform.position - _lastPosition).magnitude > 0.001f)
+            {
+                _staminaComponent.ConsumeStamina(_staminaCostPerSecond * Time.deltaTime);
+                _lastPosition = transform.position;
+            }
         }
     }
 
-    public void StartSprint()
+    public void SetTryingToSprint(bool trying)
+    {
+        _isTryingToSprint = trying;
+    }
+
+    void StartSprint()
     {
         if (!_canSprint || _isSprinting || !_groundChecker.IsGrounded()) return;
 
@@ -56,7 +82,7 @@ public class SprintComponent : MonoBehaviour
         _movementComponent.Acceleration *= _sprintMultiplier;
         _movementComponent.Deceleration *= _sprintMultiplier;
     }
-    public void StopSprint()
+    void StopSprint()
     {
         if (!_isSprinting) return;
 

@@ -28,6 +28,7 @@ public class PlayerDeathComponent : MonoBehaviour
     {
         if (transform.position.y < _deathHeight)
         {
+            transform.position = new Vector3(transform.position.x, _deathHeight, transform.position.z);
             HandleDeath();
         }
     }

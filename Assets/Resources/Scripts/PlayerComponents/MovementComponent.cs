@@ -52,10 +52,14 @@ public class MovementComponent : MonoBehaviour
         if(_movementInput.sqrMagnitude < 0.01f && _groundChecker.IsGrounded())
         {
             _collider.material.dynamicFriction = 1f;
+            _collider.material.staticFriction = 1f;
+            _collider.material.frictionCombine = PhysicsMaterialCombine.Maximum;
         }
         else
         {
             _collider.material.dynamicFriction = 0f;
+            _collider.material.staticFriction = 0f;
+            _collider.material.frictionCombine = PhysicsMaterialCombine.Minimum;
         }
 
         Vector3 currentVelocity = _rigidbody.linearVelocity;

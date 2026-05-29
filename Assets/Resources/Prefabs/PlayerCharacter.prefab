@@ -299,7 +299,7 @@ MonoBehaviour:
   _mediumFireClip: {fileID: 8300000, guid: 48d8dfeb1b8ad4b4b9887c22097a0f90, type: 3}
   _weakFireClip: {fileID: 8300000, guid: 1449136fb3eb5994897ffc4ab9f47de4, type: 3}
   _maxIntensity: 2
-  _fadeDuration: 10
+  _fadeDuration: 2
   _maxVolume: 0.05
   _fire: {fileID: 5830640538406391845}
 --- !u!1 &3536592763532117419
@@ -472,7 +472,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 4305470428735173802}
   - component: {fileID: 6456939099984801993}
   - component: {fileID: 5916815724415944451}
+  - component: {fileID: 138419996894202870}
   m_Layer: 3
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -903,7 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxStamina: 100
-  _staminaRegenRate: 5
+  _staminaRegenRate: 15
 --- !u!114 &5916815724415944451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,8 +917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24662cf3641e5d14cb1f366577b65883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 430902818164975780}
-  stepClips:
+  _audioSource: {fileID: 430902818164975780}
+  _stepClips:
   - {fileID: 8300000, guid: 9ea11a2d13d536e4e8441a0f5895995c, type: 3}
   - {fileID: 8300000, guid: 203ac8b6f07070e4f93f1c1a6fff06c3, type: 3}
   - {fileID: 8300000, guid: ac6649006dbee9e4685752e124111da7, type: 3}
@@ -938,7 +939,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6da235e2573048249bcbe608f984ff48, type: 3}
   - {fileID: 8300000, guid: fdc05ea2699023143ba7e93533cc5a0b, type: 3}
   - {fileID: 8300000, guid: f26cf9ded47cf0140957490a16f85acc, type: 3}
-  stepDistance: 2.5
+  _stepDistance: 2.5
+--- !u!114 &138419996894202870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850554525740208177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fab05d584114ca42b7582dd48fb0eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fullHPGreenBlue: 255
+  _minHPGreenBlue: 127
+  _fullHPVignette: 0
+  _minHPVignette: 0.75
 --- !u!1 &8491316008526287506
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,8 +999,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.29803923, g: 0.3137255, b: 0.3137255, a: 1}
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

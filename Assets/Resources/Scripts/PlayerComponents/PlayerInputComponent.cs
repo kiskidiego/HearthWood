@@ -61,6 +61,7 @@ public class PlayerInputComponent : MonoBehaviour
 
         _lookInput.action.Enable();
         _lookInput.action.performed += OnLookInput;
+        _lookInput.action.canceled += OnLookInput;
 
         _sprintInput.action.Enable();
         _sprintInput.action.performed += OnSprintInput;
@@ -87,6 +88,7 @@ public class PlayerInputComponent : MonoBehaviour
 
         _lookInput.action.Disable();
         _lookInput.action.performed -= OnLookInput;
+        _lookInput.action.canceled -= OnLookInput;
 
         _sprintInput.action.Disable();
         _sprintInput.action.performed -= OnSprintInput;
@@ -118,15 +120,15 @@ public class PlayerInputComponent : MonoBehaviour
         if (!canReceiveInput) return;
 
         Vector2 lookInput = context.ReadValue<Vector2>();
-        _lookComponent.Look(lookInput);
+        _lookComponent.OnLookInput(lookInput);
     }
 
     void OnSprintInput(InputAction.CallbackContext context)
     {
         if (!canReceiveInput) return;
 
-        if (context.performed) _sprintComponent.StartSprint();
-        else if (context.canceled) _sprintComponent.StopSprint();
+        if (context.performed) _sprintComponent.SetTryingToSprint(true);
+        else if (context.canceled) _sprintComponent.SetTryingToSprint(false);
     }
 
     void OnJumpInput(InputAction.CallbackContext context)

@@ -1,7 +1,14 @@
+using System;
 using UnityEngine;
 
 public class StaminaComponent : MonoBehaviour
 {
+    public struct StaminaChangeInfo
+    {
+        public float CurrentStamina;
+        public float MaxStamina;
+    }
+    public Action<StaminaChangeInfo> OnStaminaChanged;
     [SerializeField] private float _maxStamina = 100f;
     [SerializeField] private float _staminaRegenRate = 5f;
 
@@ -23,6 +30,7 @@ public class StaminaComponent : MonoBehaviour
         if (_staminaRegenDisableCounter > 0) return;
 
         _currentStamina = Mathf.Clamp(_currentStamina + _staminaRegenRate * Time.deltaTime, 0, _maxStamina);
+        OnStaminaChanged?.Invoke(new StaminaChangeInfo { CurrentStamina = _currentStamina, MaxStamina = _maxStamina });
     }
 
     public bool HasEnoughStamina(float amount)
@@ -33,6 +41,7 @@ public class StaminaComponent : MonoBehaviour
     public void ConsumeStamina(float amount)
     {
         _currentStamina = Mathf.Clamp(_currentStamina - amount, 0, _maxStamina);
+        OnStaminaChanged?.Invoke(new StaminaChangeInfo { CurrentStamina = _currentStamina, MaxStamina = _maxStamina });
     }
 
     public void DisableStaminaRegen(float duration = -1f)

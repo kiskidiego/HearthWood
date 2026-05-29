@@ -1,16 +1,30 @@
 using UnityEngine;
 
+[RequireComponent(typeof(GroundChecker))]
 public class StepAudioPlayer : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip[] _stepClips;
-    [SerializeField] private float _stepDistance = 1f;
+    [SerializeField] private float _stepDistance = 2.5f;
+    GroundChecker _groundChecker;
     Vector3 _lastPosition;
     float _distanceTraveled = 0f;
+
+    void Awake()
+    {
+        _groundChecker = GetComponent<GroundChecker>();
+    }
+
+    void Start()
+    {
+        _lastPosition = transform.position;
+    }
+
     void Update()
     {
+        if (!_groundChecker.IsGrounded()) return;
+
         Vector3 movement = transform.position - _lastPosition;
-        movement.y = 0; // Ignore vertical movement
         _distanceTraveled += movement.magnitude;
         _lastPosition = transform.position;
 

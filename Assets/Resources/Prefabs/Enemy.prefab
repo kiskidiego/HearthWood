@@ -183,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 974380020749646332}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.785, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2194,6 +2194,7 @@ GameObject:
   - component: {fileID: 5025162437776383828}
   - component: {fileID: 9040676223317105814}
   - component: {fileID: 6317075223217724145}
+  - component: {fileID: 9199251711041021979}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2266,7 +2267,7 @@ MonoBehaviour:
   _minHeight: 100
   _chaseSpeed: 10
   _normalSpeed: 3.5
-  _attackRange: 1.25
+  _attackRange: 2
   _eyes: {fileID: 449608884011723946}
   _playerLayerMask:
     serializedVersion: 2
@@ -2356,8 +2357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24662cf3641e5d14cb1f366577b65883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 5277438320759907666}
-  stepClips:
+  _audioSource: {fileID: 5277438320759907666}
+  _stepClips:
   - {fileID: 8300000, guid: 9e68ea1ebd76aa44c8cfa5beb9850830, type: 3}
   - {fileID: 8300000, guid: 1deb201b8bf8f89479323a74e421150b, type: 3}
   - {fileID: 8300000, guid: 7c518e8469a403b4c981664ecb28a79a, type: 3}
@@ -2378,7 +2379,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f1547ad8fbfa4f24d83e5a445aee860d, type: 3}
   - {fileID: 8300000, guid: 47832b56ccba5bc408b1d5aac1871746, type: 3}
   - {fileID: 8300000, guid: 3d132da7af60f1145a3deb6a8bc42a08, type: 3}
-  stepDistance: 1
+  _stepDistance: 2.5
+--- !u!114 &9199251711041021979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441818856417952712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b7ee283eff1624dafafbebe3990c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundCheckRadius: 0.5
+  _groundCheckDistance: 0.6
+  _maxGroundAngle: 90
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &8469814629036078647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,7 +2443,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
