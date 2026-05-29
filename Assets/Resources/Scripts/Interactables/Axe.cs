@@ -42,7 +42,8 @@ public class Axe : MonoBehaviour
 
         health.TakeDamage(damage);
 
-        _audioSource.PlayOneShot(_hitSounds[Random.Range(0, _hitSounds.Length)], Mathf.Clamp01(damage / _maxDamagoForVolume));
+        float volume = Mathf.Pow(Mathf.Clamp01(damage / _maxDamagoForVolume), 2);
+        _audioSource.PlayOneShot(_hitSounds[Random.Range(0, _hitSounds.Length)], volume);
     }
 
 }

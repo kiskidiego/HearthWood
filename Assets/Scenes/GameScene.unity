@@ -2319,6 +2319,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5449202957239315790, guid: e74006f5bd046144994f6cdb61c4d157, type: 3}
+      propertyPath: _decayRate
+      value: 0.016
+      objectReference: {fileID: 0}
     - target: {fileID: 5865577068510886185, guid: e74006f5bd046144994f6cdb61c4d157, type: 3}
       propertyPath: m_Name
       value: Bonfire
@@ -2847,7 +2851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6514011274513130178, guid: b8662435d51d03047bfbc8a9198c4831, type: 3}
       propertyPath: _damagePerUnitForce
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
